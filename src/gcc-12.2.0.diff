@@ -1,0 +1,21 @@
+--- a/libgcc/config/t-slibgcc	2022-08-19 01:09:54.724689916 -0700
++++ b/libgcc/config/t-slibgcc	2025-04-14 11:19:37.134991164 -0700
+@@ -26,7 +26,7 @@
+ SHLIB_OBJS = @shlib_objs@
+ SHLIB_DIR = @multilib_dir@
+ SHLIB_SLIBDIR_QUAL = @shlib_slibdir_qual@
+-SHLIB_LC = -lc
++#SHLIB_LC = -lc
+ SHLIB_MAKE_SOLINK = $(LN_S) $(SHLIB_SONAME) $(SHLIB_DIR)/$(SHLIB_SOLINK)
+ SHLIB_INSTALL_SOLINK = $(LN_S) $(SHLIB_SONAME) \
+ 	$(DESTDIR)$(slibdir)$(SHLIB_SLIBDIR_QUAL)/$(SHLIB_SOLINK)
+--- a/libgcc/config.host	2022-08-19 01:09:54.664689148 -0700
++++ b/libgcc/config.host	2025-04-14 10:57:09.628388737 -0700
+@@ -403,6 +403,7 @@
+ 	tmake_file="${tmake_file} ${cpu_type}/t-softfp t-softfp"
+ 	;;
+ aarch64*-*-linux*)
++	extra_parts="$extra_parts crtbegin.o crtend.o crti.o crtn.o"
+ 	extra_parts="$extra_parts crtfastmath.o"
+ 	md_unwind_header=aarch64/linux-unwind.h
+ 	tmake_file="${tmake_file} ${cpu_type}/t-aarch64"

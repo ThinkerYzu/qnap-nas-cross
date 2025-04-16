@@ -177,11 +177,10 @@ gcc-stage2: glibc-stage2 binutils-stage2
 		PATH=$(STAGE2)/bin/:$$PATH \
 			../configure --target=$(ARCH) \
 				--enable-languages=c,c++ \
-				--with-build-sysroot=$(STAGE2) \
+				--with-sysroot=$(STAGE2) \
 				--host=x86_64-pc-linux-gnu \
 				--prefix=$(STAGE2) \
-				--disable-libsanitizer \
-				--disable-sanity-checks
+				--disable-libsanitizer
 	@cd src/$(GCC_DIR)/objs && \
 		PATH=$(STAGE2)/bin/:$$PATH $(MAKE) -j32 && \
 		PATH=$(STAGE2)/bin/:$$PATH $(MAKE) install

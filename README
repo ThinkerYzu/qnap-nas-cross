@@ -1,0 +1,10 @@
+Build a toolchain from srouce code to provide a cross-compiling
+environment for QNAP NAS users.
+
+This repository will build binutils, header files of Linux, glibc, and
+gcc. The result sysroot will be at toolchain/ sub-directory.
+
+== qnap-config.gz ==
+
+You should update src/qnap-config.gz with /proc/config.gz from your
+QNAP NAS.

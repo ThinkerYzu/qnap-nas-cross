@@ -35,7 +35,7 @@ TARS := $(BINUTILS_TAR) $(GCC_TAR) $(GLIBC_TAR) $(LINUX_TAR) \
 
 STAGES := binutils-stage1 gcc-stage1 linux-stage1 glibc-stage1 \
 		binutils-stage2 linux-stage2 glibc-stage2 gcc-stage2 \
-		stage1-build stage2-build prepare-stage1
+		stage1-build stage2-build
 
 all:: stage2-build
 
@@ -47,6 +47,7 @@ clean::
 clean-all:: clean
 	@echo "Clean all"
 	@cd src; rm -rf $(TARS)
+	@rm prepare-stage1
 
 stage1-build: binutils-stage1 gcc-stage1 linux-stage1 glibc-stage1
 	@touch $@
@@ -123,6 +124,8 @@ glibc-stage1: linux-stage1
 		$(MAKE) -j32
 	@cd src/$(GLIBC_DIR)/objs && \
 		$(MAKE) DESTDIR=$(STAGE1) install
+	@mkdir $(STAGE1)/usr
+	@mv $(STAGE1)/include $(STAGE1)/usr/
 	@touch $@
 
 stage2-build: binutils-stage2 linux-stage2 glibc-stage2 gcc-stage2
@@ -157,6 +160,8 @@ glibc-stage2: linux-stage2
 	# Install to the sysroot of the compiler and the linker
 	@cd src/$(GLIBC_DIR)/objs && \
 		$(MAKE) DESTDIR=$(STAGE2) install
+	@mkdir $(STAGE2)/usr
+	@mv $(STAGE2)/include $(STAGE2)/usr/
 	@touch $@
 
 gcc-stage2: glibc-stage2 binutils-stage2

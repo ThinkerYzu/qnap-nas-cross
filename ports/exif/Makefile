@@ -37,7 +37,7 @@ install:
 	@find $(TOOLCHAIN) -newer .install-before-completed | \
 		awk -F "$(TOOLCHAIN)" '{print $$2;}' | \
 		sed 's/^\///' | \
-		xargs -I '{}' bash -c "if [  -f /home/thinker/progm/qnap-nas-cross/toolchain/{} ]; then echo {}; fi" > filelist
+		xargs -I '{}' bash -c "if [  -f $(TOOLCHAIN)/{} ]; then echo {}; fi" > filelist
 	@echo "Install exif completed"
 
 clean:

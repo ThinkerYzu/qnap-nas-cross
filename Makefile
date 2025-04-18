@@ -88,7 +88,7 @@ gcc-stage1: binutils-stage1
 		PATH=$(STAGE1)/bin/:$$PATH \
 			../configure --target=$(ARCH) \
 				--enable-languages=c,c++ \
-				--with-build-sysroot=$(STAGE1) \
+				--with-sysroot=$(STAGE1) \
 				--with-newlib --host=x86_64-pc-linux-gnu \
 				--prefix=$(STAGE1) --disable-libstdcxx \
 				--disable-libssp --without-headers \

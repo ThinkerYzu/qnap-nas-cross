@@ -134,7 +134,7 @@ stage2-build: binutils-stage2 linux-stage2 glibc-stage2 gcc-stage2
 binutils-stage2: stage1-build
 	@echo "Building binutils stage2"
 	@cd src/$(BINUTILS_DIR)/objs && rm -rf *
-	@cd src/$(BINUTILS_DIR)/objs && ../configure --prefix=$(STAGE2) --target=$(ARCH)
+	@cd src/$(BINUTILS_DIR)/objs && ../configure --prefix=$(STAGE2) --target=$(ARCH) --with-sysroot=$(STAGE2)
 	@cd src/$(BINUTILS_DIR)/objs && $(MAKE) -j32
 	@cd src/$(BINUTILS_DIR)/objs && $(MAKE) install
 	@touch $@

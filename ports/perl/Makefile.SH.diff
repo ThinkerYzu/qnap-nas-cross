@@ -1,0 +1,20 @@
+--- a/Makefile.SH	2025-03-30 03:35:38.000000000 -0700
++++ b/Makefile.SH	2025-04-19 16:26:42.710050404 -0700
+@@ -372,7 +372,7 @@
+ 	$spitshell >>$Makefile <<!GROK!THIS!
+ # Macros to invoke a copy of our fully operational perl during the build.
+ PERL_EXE = perl\$(EXE_EXT)
+-RUN_PERL = \$(LDLIBPTH) \$(RUN) ./perl\$(EXE_EXT) -Ilib -I.
++RUN_PERL = \$(LDLIBPTH) \$(RUN) ./host/miniperl\$(EXE_EXT) -Ihost/lib -Ihost/
+ !GROK!THIS!
+ 	;;
+ esac
+@@ -792,7 +792,7 @@
+ 
+ $spitshell >>$Makefile <<'!NO!SUBS!'
+ generate_uudmap$(HOST_EXE_EXT): generate_uudmap$(OBJ_EXT)
+-	$(CC) -o generate_uudmap$(EXE_EXT) $(LDFLAGS) generate_uudmap$(OBJ_EXT) $(libs)
++	rm -f generate_uudmap ; ln -s host/generate_uudmap
+ 
+ !NO!SUBS!
+ ;;

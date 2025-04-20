@@ -7,6 +7,7 @@ TARBALL=$(notdir $(URL))
 ARCH=aarch64-unknown-linux-gnu
 CC=$(TOOLCHAIN)/bin/$(ARCH)-gcc
 CXX=$(TOOLCHAIN)/bin/$(ARCH)-g++
+BINS=usr/bin/perl5.40.2
 
 .PHONY: all install clean pkg
 
@@ -56,7 +57,9 @@ install: .build-completed
 	# Install the library
 	@touch .install-before-completed
 	@cd src && \
-	PATH=$(TOOLCHAIN)/bin:$$PATH make install
+	PATH=$(TOOLCHAIN)/bin:$$PATH make install && \
+	cd $(TOOLCHAIN)/usr/bin && \
+	ln -sf perl5.40.2 perl
 	@find $(TOOLCHAIN) -newer .install-before-completed | \
 		awk -F "$(TOOLCHAIN)" '{print $$2;}' | \
 		sed 's/^\///' | \

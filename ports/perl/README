@@ -1,0 +1,10 @@
+Set env PERL5LIB for your target machine.
+
+Assuming your sysroot/binary root is /path/to/myroot on the target
+machine, your perl binary will be under the /path/to/myroot/usr/bin/
+directory. With this assumption, I will add the following line to
+$HOME/.profile for running perl.
+
+    export PERL5LIB=/path/to/myroot/lib/perl5/5.40.2:/path/to/myroot/usr/lib/perl5/site_perl/5.40.2
+
+Without setting PERL5LIB, perl may not find installed modules.

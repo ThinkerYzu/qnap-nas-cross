@@ -8,3 +8,32 @@ gcc. The result sysroot will be at toolchain/ sub-directory.
 
 You should update src/qnap-config.gz with /proc/config.gz from your
 QNAP NAS.
+
+== ports ==
+
+There are a bunch of directories doing cross-compiling for various
+packages under the ports directory. You usually just need to do
+
+    make all && install
+
+to install them to toolchain directory. However, you have to use
+scripts/chsysroot.sh to configure executables before copying them to
+the target machine. For example, if you are going to copy toolchain to
+/your/native/root of the target machine. Then, you should do
+
+    ./scripts/chsysroot.sh /your/native/root toolchain/usr/bin/mytool
+
+if mytool is one of executables. You have to do this on all
+executables since we want to have the flexibility of copying our tools
+to any where on the target machine.
+
+
+== Packaging ==
+
+To make a tarball of all target binaries and libraries we have built,
+you can use the following command:
+
+    make pkg
+
+It will create a tarball sys-aarch64-unknown-linux-gnu.tar.gz
+including all binaries and libraries we have built before.

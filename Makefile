@@ -185,3 +185,9 @@ gcc-stage2: glibc-stage2 binutils-stage2
 		PATH=$(STAGE2)/bin/:$$PATH $(MAKE) -j32 && \
 		PATH=$(STAGE2)/bin/:$$PATH $(MAKE) install
 	@touch $@
+
+pkg:
+	@echo "Packaging all target binaries and libraries"
+	@cd $(STAGE2) && \
+		tar zcf $(ROOT)/sys-$(ARCH).tar.gz lib usr
+

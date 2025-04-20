@@ -1,4 +1,5 @@
 TOOLCHAIN=$(CURDIR)/../../toolchain
+ROOT=$(realpath $(CURDIR)/../..)
 
 PKG_NAME:=perl
 URL=https://www.cpan.org/src/5.0/perl-5.40.2.tar.gz
@@ -42,7 +43,7 @@ fetch: .fetch-completed
 	cd src && \
 	chmod +w Makefile.SH && \
 	patch -p1 < ../Makefile.SH.diff && \
-	cp ../config.sh ./ && \
+		sed "s/\\[root\\]/$$(echo $(ROOT)|sed 's/\//\\\//g')/g" ../config.sh > config.sh && \
 	./Configure -S && \
 	PATH=$(TOOLCHAIN)/bin:$$PATH make
 	@touch $@
@@ -55,7 +56,7 @@ install: .build-completed
 	# Install the library
 	@touch .install-before-completed
 	@cd src && \
-	make install
+	PATH=$(TOOLCHAIN)/bin:$$PATH make install
 	@find $(TOOLCHAIN) -newer .install-before-completed | \
 		awk -F "$(TOOLCHAIN)" '{print $$2;}' | \
 		sed 's/^\///' | \

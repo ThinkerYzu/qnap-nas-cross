@@ -1,6 +1,6 @@
 TOOLCHAIN=$(CURDIR)/../../toolchain
 
-PKG_NAME:=libexif
+PKG_NAME:=perl
 URL=https://www.cpan.org/src/5.0/perl-5.40.2.tar.gz
 TARBALL=$(notdir $(URL))
 ARCH=aarch64-unknown-linux-gnu

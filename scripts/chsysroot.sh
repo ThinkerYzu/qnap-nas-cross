@@ -1,7 +1,7 @@
 # All required libraries are in the given sysroot path.
 
 # Check if patchelf is installed
-if ! command -v patchelf &> /dev/null; then
+if ! command -v patchelf > /dev/null; then
     echo "patchelf could not be found. Please install it first."
     exit 1
 fi

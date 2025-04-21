@@ -20,4 +20,5 @@ SYSROOT=$1
 BINARY=$2
 patchelf --set-rpath $SYSROOT/lib $BINARY
 patchelf --add-rpath $SYSROOT/usr/lib $BINARY
+patchelf --add-rpath $SYSROOT/usr/lib64 $BINARY
 patchelf --set-interpreter $SYSROOT/lib/ld-linux-aarch64.so.1 $BINARY

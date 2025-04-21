@@ -1,0 +1,11 @@
+--- a/m4/libtool.m4	2023-04-03 05:15:26.000000000 -0700
++++ b/m4/libtool.m4	2025-04-20 14:12:48.437478569 -0700
+@@ -2888,7 +2888,7 @@
+   hardcode_into_libs=yes
+ 
+   # Add ABI-specific directories to the system library path.
+-  sys_lib_dlsearch_path_spec="/lib64 /usr/lib64 /lib /usr/lib"
++  sys_lib_dlsearch_path_spec="/lib /usr/lib"
+ 
+   # Ideally, we could use ldconfig to report *all* directores which are
+   # searched for libraries, however this is still not possible.  Aside from not

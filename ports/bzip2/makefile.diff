@@ -1,0 +1,24 @@
+--- a/Makefile	2025-04-20 13:20:10.031186296 -0700
++++ b/Makefile	2025-04-20 13:20:32.176359950 -0700
+@@ -15,8 +15,8 @@
+ SHELL=/bin/sh
+ 
+ # To assist in cross-compiling
+-CC=gcc
+-AR=ar
++CC=aarch64-unknown-linux-gnu-gcc
++AR=aarch64-unknown-linux-gnu-ar
+ RANLIB=ranlib
+ LDFLAGS=
+ 
+--- a/Makefile	2025-04-20 13:23:28.864257522 -0700
++++ b/Makefile	2025-04-20 13:23:37.327875857 -0700
+@@ -21,7 +21,7 @@
+ LDFLAGS=
+ 
+ BIGFILES=-D_FILE_OFFSET_BITS=64
+-CFLAGS=-Wall -Winline -O2 -g $(BIGFILES)
++CFLAGS=-Wall -Winline -O2 -g $(BIGFILES) -fPIC
+ 
+ # Where you want it installed when you do 'make install'
+ PREFIX=/usr/local
